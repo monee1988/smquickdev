@@ -18,15 +18,6 @@ public class BaseController {
 	@Autowired
 	protected Validator validator;
 
-	/**
-	 * 服务端参数有效性验证
-	 * 
-	 * @param object
-	 *            验证的实体对象
-	 * @param groups
-	 *            验证组
-	 * @return 验证成功：返回true；严重失败：将错误信息添加到 flash message 中
-	 */
 	protected boolean beanValidator(RedirectAttributes redirectAttributes, Object object, Class<?>... groups) {
 		try {
 			BeanValidators.validateWithException(validator, object, groups);

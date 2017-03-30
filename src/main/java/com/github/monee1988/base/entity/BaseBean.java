@@ -1,23 +1,18 @@
 package com.github.monee1988.base.entity;
 
-import java.util.Date;
-
-import org.springframework.util.StringUtils;
-
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.monee1988.mybatis.entity.Page;
-
 import lombok.Data;
+import org.springframework.util.StringUtils;
+
+import java.util.Date;
 
 @Data
 @JsonIgnoreProperties(value = { "isNewData" })  
 public class BaseBean<T>{
 
-	/**
-	 * 
-	 */
 	public static final String row_normal = "1";
 	public static final String row_state1 = "2";
 	public static final String row_delete = "0";
@@ -62,17 +57,10 @@ public class BaseBean<T>{
 		this.updateAccount = operateId;
 	}
 
-	/**
-	 *默认的构造
-	 */
 	public BaseBean() {
 		
 	}
 
-	/**
-	 * 带ID的构造
-	 * @param id
-	 */
 	public BaseBean(Long id) {
 		this();
 		this.id = id;
