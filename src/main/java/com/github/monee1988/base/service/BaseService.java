@@ -1,24 +1,23 @@
 package com.github.monee1988.base.service;
 
-import java.util.List;
-
 import com.github.monee1988.base.dao.BaseReadDao;
 import com.github.monee1988.base.dao.BaseWriteDao;
 import com.github.monee1988.base.entity.BaseBean;
+import com.github.monee1988.mybatis.entity.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.github.monee1988.mybatis.entity.Page;
+import java.util.List;
 
-public class BaseService<T extends BaseBean<T>,MR extends BaseReadDao<T>,MW extends BaseWriteDao<T>> {
+public abstract class BaseService<T extends BaseBean<T>,MR extends BaseReadDao<T>,MW extends BaseWriteDao<T>> {
 	
 	protected Logger logger = LoggerFactory.getLogger(getClass());
-	
-	@Autowired
+
+	@Autowired(required = false)
 	protected MR readMapper;
-	
-	@Autowired
+
+	@Autowired(required = false)
 	protected MW writeMapper;
 	
 	protected T getDataById(String id) {

@@ -4,7 +4,7 @@
 
     <groupId>com.github.monee1988</groupId>
     <artifactId>smquickdev</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1-RELEASE</version>
     <packaging>jar</packaging>
 
     <parent>
@@ -103,7 +103,7 @@
         <dependency>
             <groupId>com.github.monee1988</groupId>
             <artifactId>mybatis-page</artifactId>
-            <version>0.0.2-SNAPSHOT</version>
+            <version>0.0.1-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
