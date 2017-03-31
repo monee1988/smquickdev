@@ -7,16 +7,18 @@
     <version>0.0.1-RELEASE</version>
     <packaging>jar</packaging>
 
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
-
     <name>smquickdev</name>
     <url>https://github.com/monee1988/smquickdev</url>
+    <inceptionYear>2017-3-31</inceptionYear>
     <description>smquickdev</description>
-    
+
+    <!-- 全局属性配置 -->
+    <properties>
+        <project.build.name>mybatis-page</project.build.name>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
+
 
     <scm>
         <connection>scm:git:git@github.com:monee1988/smquickdev.git</connection>
@@ -66,11 +68,6 @@
             <email>greatpwx@126.com</email>
         </developer>
     </developers>
-
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -124,6 +121,33 @@
 
     <build>
         <plugins>
+            <!-- 编译插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+
+            <!-- 设置资源文件的编码方式 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.2</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -139,7 +163,8 @@
                                 <requireMavenVersion>
                                     <version>(,2.1.0),(2.1.0,2.2.0),(2.2.0,)</version>
                                     <message>Maven 2.1.0 and 2.2.0 produce incorrect GPG signatures
-                                        and checksums respectively.</message>
+                                        and checksums respectively.
+                                    </message>
                                 </requireMavenVersion>
                             </rules>
                         </configuration>
@@ -168,6 +193,7 @@
             <id>release</id>
             <build>
                 <plugins>
+                    <!-- 源代码打包插件 -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
@@ -182,23 +208,53 @@
                             </execution>
                         </executions>
                     </plugin>
-                   <plugin>
+
+                    <!-- jar包插件 -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <version>2.4</version>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <!-- 告知 maven-jar-plugin添加一个 Class-Path元素到 MANIFEST.MF文件，以及在Class-Path元素中包括所有依赖项 -->
+                                    <addClasspath>true</addClasspath>
+                                    <!-- 所有的依赖项应该位于 lib文件夹 -->
+                                    <classpathPrefix>lib/</classpathPrefix>
+                                </manifest>
+                                <manifestEntries>
+                                    <Built-By>monee</Built-By>
+                                    <Email>greatpwx@126.com</Email>
+                                </manifestEntries>
+                            </archive>
+                        </configuration>
+                    </plugin>
+
+                    <!--javadoc打包插件-->
+                    <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
                         <version>2.9.1</version>
-                        <configuration>
-                           <attach>false</attach>
-                        </configuration>
                         <executions>
                             <execution>
-                                <phase>package</phase>
                                 <id>attach-javadocs</id>
+                                <phase>install</phase>
                                 <goals>
                                     <goal>jar</goal>
                                 </goals>
+                                <configuration>
+                                    <encoding>UTF-8</encoding>
+                                </configuration>
                             </execution>
                         </executions>
+                        <configuration>
+                            <encoding>UTF-8</encoding>
+                            <charset>UTI-8</charset>
+                            <docencoding>UTF-8</docencoding>
+                        </configuration>
                     </plugin>
+
+                    <!--GPG 生成密钥对-->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
@@ -227,4 +283,5 @@
             </distributionManagement>
         </profile>
     </profiles>
+
 </project>
