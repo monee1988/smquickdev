@@ -4,6 +4,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.github.monee1988.mybatis.entity.Page;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.util.StringUtils;
 
@@ -17,28 +18,37 @@ public class BaseBean<T>{
 	public static final String row_state1 = "2";
 	public static final String row_delete = "0";
 
+	@ApiModelProperty(hidden = true)
 	protected Long id;
-	
+
+	@ApiModelProperty(hidden = true)
 	@JSONField(format="yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	protected Date createDate;
-	
+
+	@ApiModelProperty(hidden = true)
 	@JSONField(format="yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
 	protected Date updateDate;
-	
+
+	@ApiModelProperty(hidden = true)
 	protected Long createAccount;
-	
+
+	@ApiModelProperty(hidden = true)
 	protected Long updateAccount;
-	
+
+	@ApiModelProperty(hidden = true)
 	@JSONField(serialize = false)
 	protected String rowState = row_normal;
 
+	@ApiModelProperty(hidden = true)
 	@JSONField(serialize = false)
 	protected boolean isNewData;//是否是新数据
-	
+
+	@ApiModelProperty(hidden = true)
 	protected Long adminId; //当前登录账号Id
-    
+
+	@ApiModelProperty(hidden = true)
     private Page<T> page;
 	
 	public boolean isNewData(){
