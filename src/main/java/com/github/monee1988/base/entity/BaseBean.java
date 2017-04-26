@@ -50,7 +50,8 @@ public class BaseBean<T>{
 
 	@ApiModelProperty(hidden = true)
     private Page<T> page;
-	
+
+	@ApiModelProperty(hidden = true)
 	public boolean isNewData(){
        return StringUtils.isEmpty(this.id)||this.isNewData;
     }
