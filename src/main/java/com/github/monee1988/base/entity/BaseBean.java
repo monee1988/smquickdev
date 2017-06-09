@@ -8,11 +8,12 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.util.StringUtils;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @JsonIgnoreProperties(value = { "isNewData" })  
-public class BaseBean<T>{
+public class BaseBean<T> implements Serializable{
 
 	public static final String row_normal = "1";
 	public static final String row_state1 = "2";
