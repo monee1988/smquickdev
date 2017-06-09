@@ -12,6 +12,12 @@
     <inceptionYear>2017-3-31</inceptionYear>
     <description>smquickdev</description>
 
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
     <!-- 全局属性配置 -->
     <properties>
         <project.build.name>mybatis-page</project.build.name>
@@ -100,7 +106,7 @@
         <dependency>
             <groupId>com.github.monee1988</groupId>
             <artifactId>mybatis-page</artifactId>
-            <version>0.0.1-RELEASE</version>
+            <version>0.0.2-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

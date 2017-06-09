@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface BaseWriteDao<T extends BaseBean<T>> extends BaseDao{
 	
-	public void saveData(T object);
+	int saveData(T object);
 
-	public void updateData(T object);
+	int updateData(T object);
 
-	public void deleteByIds(List<String> idList);
+	int deleteByIds(List<String> idList);
 }

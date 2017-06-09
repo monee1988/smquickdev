@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface BaseReadDao<T extends BaseBean<T>> extends BaseDao{
 
-	public List<T> listData(T object);
+	List<T> listData(T object);
 	
-	public T getDataById(String id);
+	T getDataById(String id);
 }
